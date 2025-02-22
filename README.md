@@ -15,6 +15,9 @@ A customizable video player component for React Native with gesture controls, fu
 - 🎨 Customizable UI
 - ⚡ Built with React Native Reanimated for smooth animations
 
+
+https://github.com/user-attachments/assets/e0a73e4e-ba32-45be-8d30-6d0f118c4d1a
+
 ## Installation
 
 ```bash
