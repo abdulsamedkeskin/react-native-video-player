@@ -2,7 +2,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { Ionicons } from '@expo/vector-icons';
 
-interface TopControlsProps {
+export interface TopControlsProps {
   title?: string;
   onBack?: () => void;
 }

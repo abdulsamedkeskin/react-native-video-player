@@ -1,9 +1,9 @@
 import { useCallback, useMemo } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
+import BottomSheet, { BottomSheetFlatList } from '@gorhom/bottom-sheet';
 import type { Quality } from '../../types';
 
-interface QualityMenuProps {
+export interface QualityMenuProps {
   visible: boolean;
   onClose: () => void;
   qualities: Quality[];
@@ -36,43 +36,48 @@ export function QualityMenu({
       enablePanDownToClose
       index={0}
       backgroundStyle={styles.bottomSheetBackground}
+      style={styles.modalContent}
+      enableDynamicSizing={false}
       backdropComponent={(props) => (
         <View style={[props.style, {}]}>
           <TouchableOpacity style={{ flex: 1 }} onPress={onClose} />
         </View>
       )}
     >
-      <BottomSheetView style={styles.modalContent}>
-        <Text style={styles.modalTitle}>Quality</Text>
-        {qualities.map((quality) => (
-          <View key={quality.label} style={styles.menuItemContainer}>
+      <Text style={styles.modalTitle}>Quality</Text>
+      <BottomSheetFlatList
+        data={qualities}
+        keyExtractor={(item: Quality) => item.trackId}
+        style={{ marginBottom: 16 }}
+        renderItem={({ item }: { item: Quality }) => (
+          <View key={item.trackId} style={styles.menuItemContainer}>
             <TouchableOpacity
               onPress={() => {
-                onQualityChange(quality);
+                onQualityChange(item);
                 onClose();
               }}
             >
               <View
                 style={[
                   styles.menuItem,
-                  currentQuality?.label === quality.label &&
+                  currentQuality?.trackId === item.trackId &&
                     styles.selectedItem,
                 ]}
               >
                 <Text
                   style={[
                     styles.menuItemText,
-                    currentQuality?.label === quality.label &&
+                    currentQuality?.trackId === item.trackId &&
                       styles.selectedItemText,
                   ]}
                 >
-                  {quality.label}
+                  {item.label}
                 </Text>
               </View>
             </TouchableOpacity>
           </View>
-        ))}
-      </BottomSheetView>
+        )}
+      />
     </BottomSheet>
   );
 }

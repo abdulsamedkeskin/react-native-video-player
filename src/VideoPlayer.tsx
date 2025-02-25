@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect } from 'react';
 import { View, StyleSheet, Dimensions } from 'react-native';
 import Video, {
   SelectedTrackType,
@@ -38,11 +38,11 @@ export default function VideoPlayer({
     initialAudioLanguage,
   });
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (onTimeUpdate) onTimeUpdate(state.currentTime);
   }, [state.currentTime, onTimeUpdate]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (onDurationChange) onDurationChange(state.duration);
   }, [state.duration, onDurationChange]);
 

@@ -1,19 +1,9 @@
-import {
-  DRMType,
-  SelectedTrackType,
-  SelectedVideoTrackType,
+import { SelectedTrackType, SelectedVideoTrackType } from 'react-native-video';
+import type {
+  SelectedTrack,
+  SelectedVideoTrack,
+  ReactVideoSource as VideoSource,
 } from 'react-native-video';
-import type { SelectedTrack, SelectedVideoTrack } from 'react-native-video';
-
-export interface VideoSource {
-  uri: string;
-  type?: string;
-  drm?: {
-    type: DRMType;
-    licenseServer: string;
-  };
-  headers?: Record<string, string>;
-}
 
 export interface Quality {
   width: number;
@@ -58,4 +48,5 @@ export type {
   SelectedTrackType,
   SelectedVideoTrack,
   SelectedVideoTrackType,
+  VideoSource,
 };

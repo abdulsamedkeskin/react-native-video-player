@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 import { MaterialIcons, Ionicons } from '@expo/vector-icons';
 
-interface CenterControlsProps {
+export interface CenterControlsProps {
   currentTime: number;
   duration: number;
   paused: boolean;

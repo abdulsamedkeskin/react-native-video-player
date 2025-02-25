@@ -1,4 +1,4 @@
-import { VideoPlayer } from 'react-native-video-player';
+import { VideoPlayer } from '@sametkeskin/react-native-video-player';
 import { View, StyleSheet, StatusBar, Platform } from 'react-native';
 import * as NavigationBar from 'expo-navigation-bar';
 import * as ScreenOrientation from 'expo-screen-orientation';
@@ -43,7 +43,7 @@ export default function App() {
         initialSubtitleLanguage="en"
         initialQualityHeight={1080}
         initialAudioLanguage="en"
-        onError={(error) => {
+        onError={(error: Error) => {
           console.error(error);
         }}
         onBack={() => {

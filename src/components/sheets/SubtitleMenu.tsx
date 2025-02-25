@@ -1,9 +1,9 @@
 import { useCallback, useMemo } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
+import BottomSheet, { BottomSheetFlatList } from '@gorhom/bottom-sheet';
 import type { Subtitle } from '../../types';
 
-interface SubtitleMenuProps {
+export interface SubtitleMenuProps {
   visible: boolean;
   onClose: () => void;
   subtitles: Subtitle[];
@@ -36,64 +36,68 @@ export function SubtitleMenu({
       enablePanDownToClose
       index={0}
       backgroundStyle={styles.bottomSheetBackground}
+      style={styles.modalContent}
+      enableDynamicSizing={false}
       backdropComponent={(props) => (
         <View style={[props.style, {}]}>
           <TouchableOpacity style={{ flex: 1 }} onPress={onClose} />
         </View>
       )}
     >
-      <BottomSheetView style={styles.modalContent}>
-        <Text style={styles.modalTitle}>Subtitles</Text>
-        <View style={styles.menuItemContainer}>
-          <TouchableOpacity
-            onPress={() => {
-              onSubtitleChange(null);
-              onClose();
-            }}
+      <Text style={styles.modalTitle}>Subtitles</Text>
+      <View style={styles.menuItemContainer}>
+        <TouchableOpacity
+          onPress={() => {
+            onSubtitleChange(null);
+            onClose();
+          }}
+        >
+          <View
+            style={[styles.menuItem, !currentSubtitle && styles.selectedItem]}
           >
-            <View
-              style={[styles.menuItem, !currentSubtitle && styles.selectedItem]}
+            <Text
+              style={[
+                styles.menuItemText,
+                !currentSubtitle && styles.selectedItemText,
+              ]}
             >
-              <Text
-                style={[
-                  styles.menuItemText,
-                  !currentSubtitle && styles.selectedItemText,
-                ]}
-              >
-                Off
-              </Text>
-            </View>
-          </TouchableOpacity>
-        </View>
-        {subtitles.map((subtitle) => (
-          <View key={subtitle.language} style={styles.menuItemContainer}>
+              Off
+            </Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+      <BottomSheetFlatList
+        data={subtitles}
+        keyExtractor={(item: Subtitle) => item.index.toString()}
+        style={{ marginBottom: 16 }}
+        renderItem={({ item }: { item: Subtitle }) => (
+          <View key={item.index} style={styles.menuItemContainer}>
             <TouchableOpacity
               onPress={() => {
-                onSubtitleChange(subtitle);
+                onSubtitleChange(item);
                 onClose();
               }}
             >
               <View
                 style={[
                   styles.menuItem,
-                  currentSubtitle?.language === subtitle.language &&
-                    styles.selectedItem,
+                  currentSubtitle?.index === item.index && styles.selectedItem,
                 ]}
               >
                 <Text
                   style={[
                     styles.menuItemText,
-                    currentSubtitle?.language === subtitle.language &&
+                    currentSubtitle?.index === item.index &&
                       styles.selectedItemText,
                   ]}
                 >
-                  {subtitle.label || subtitle.language}
+                  {item.label || item.language}
                 </Text>
               </View>
             </TouchableOpacity>
           </View>
-        ))}
-      </BottomSheetView>
+        )}
+      />
     </BottomSheet>
   );
 }

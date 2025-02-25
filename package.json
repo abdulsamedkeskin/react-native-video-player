@@ -63,6 +63,13 @@
   "publishConfig": {
     "registry": "https://registry.npmjs.org/"
   },
+  "dependencies": {
+    "@expo/vector-icons": "^14.0.2",
+    "@gorhom/bottom-sheet": "^5.1.1",
+    "@react-native-community/slider": "^4.5.5",
+    "expo-linear-gradient": "~14.0.2",
+    "zustand": "^5.0.3"
+  },
   "devDependencies": {
     "@commitlint/config-conventional": "^17.0.2",
     "@evilmartians/lefthook": "^1.5.0",
@@ -95,16 +102,11 @@
     "@types/react": "^18.2.44"
   },
   "peerDependencies": {
-    "@expo/vector-icons": "^14.0.2",
-    "@gorhom/bottom-sheet": "^5.1.1",
-    "@react-native-community/slider": "^4.5.5",
-    "expo-linear-gradient": "~14.0.2",
     "react": "18.3.1",
     "react-native": "0.76.7",
     "react-native-gesture-handler": "^2.23.1",
     "react-native-reanimated": "~3.16.1",
-    "react-native-video": "^6.10.0",
-    "zustand": "^5.0.3"
+    "react-native-video": "^6.10.0"
   },
   "workspaces": [
     "example"
@@ -146,11 +148,11 @@
       "prettier/prettier": [
         "error",
         {
-          "singleQuote": true
+          "singleQuote": true,
+          "endOfLine": "auto"
         }
       ]
-    },
-    "parser": "babel-eslint"
+    }
   },
   "eslintIgnore": [
     "node_modules/",
@@ -183,7 +185,8 @@
         "typescript",
         {
           "project": "tsconfig.build.json",
-          "esm": true
+          "esm": true,
+          "tsc": "./node_modules/.bin/tsc"
         }
       ]
     ]

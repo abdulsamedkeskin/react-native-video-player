@@ -5,7 +5,7 @@ import Slider from '@react-native-community/slider';
 import { formatTime } from '../../utils';
 import type { Quality, Subtitle, AudioTrack } from '../../types';
 
-interface BottomControlsProps {
+export interface BottomControlsProps {
   currentTime: number;
   duration: number;
   qualities: Quality[];

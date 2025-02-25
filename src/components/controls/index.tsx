@@ -7,7 +7,7 @@ import { TopControls } from './TopControls';
 import { CenterControls } from './CenterControls';
 import { BottomControls } from './BottomControls';
 
-interface ControlsProps {
+export interface ControlsProps {
   show: boolean;
   title?: string;
   onBack?: () => void;

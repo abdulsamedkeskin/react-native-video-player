@@ -3240,16 +3240,11 @@ __metadata:
     typescript: ^5.2.2
     zustand: ^5.0.3
   peerDependencies:
-    "@expo/vector-icons": ^14.0.2
-    "@gorhom/bottom-sheet": ^5.1.1
-    "@react-native-community/slider": ^4.5.5
-    expo-linear-gradient: ~14.0.2
     react: 18.3.1
     react-native: 0.76.7
     react-native-gesture-handler: ^2.23.1
     react-native-reanimated: ~3.16.1
     react-native-video: ^6.10.0
-    zustand: ^5.0.3
   languageName: unknown
   linkType: soft
 

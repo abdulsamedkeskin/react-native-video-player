@@ -7,7 +7,7 @@ import {
   findAudioTrackByLanguage,
 } from '../utils';
 
-interface VideoPlayerStore {
+export interface VideoPlayerStore {
   // UI State
   showControls: boolean;
   setShowControls: (show: boolean) => void;
@@ -113,8 +113,10 @@ export const useVideoPlayerStore = create<VideoPlayerStore>((set) => ({
           height: track.height!,
           bitrate: `${Math.round(track.bitrate! / 1000)}k`,
           label: `${track.height}p`,
-          trackId: track.tracksID || '',
-        }));
+          // @ts-ignore
+          trackId: track.trackId || '',
+        }))
+        .sort((a, b) => a.height - b.height);
 
       if (availableQualities.length > 0) {
         set({ qualities: availableQualities });
@@ -138,7 +140,7 @@ export const useVideoPlayerStore = create<VideoPlayerStore>((set) => ({
         .map((track) => ({
           language: track.language!,
           url: '',
-          label: `${track.title!}`,
+          label: track.title!,
           index: track.index,
         }));
 
@@ -160,7 +162,7 @@ export const useVideoPlayerStore = create<VideoPlayerStore>((set) => ({
         .filter((track) => track.language)
         .map((track) => ({
           language: track.language!,
-          label: `${track.title!}`,
+          label: track.title!,
           index: track.index,
         }));
 
@@ -173,7 +175,7 @@ export const useVideoPlayerStore = create<VideoPlayerStore>((set) => ({
         );
         if (track) {
           set({ currentAudioTrack: track });
-        }
+        } else set({ currentAudioTrack: availableAudioTracks[0] });
       } else if (availableAudioTracks.length > 0) {
         set({ currentAudioTrack: availableAudioTracks[0] });
       }

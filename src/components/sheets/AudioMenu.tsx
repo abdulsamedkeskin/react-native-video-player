@@ -1,9 +1,9 @@
 import { useCallback, useMemo } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import BottomSheet, { BottomSheetView } from '@gorhom/bottom-sheet';
+import BottomSheet, { BottomSheetFlatList } from '@gorhom/bottom-sheet';
 import type { AudioTrack } from '../../types';
 
-interface AudioMenuProps {
+export interface AudioMenuProps {
   visible: boolean;
   onClose: () => void;
   audioTracks: AudioTrack[];
@@ -35,44 +35,49 @@ export function AudioMenu({
       onChange={handleSheetChanges}
       enablePanDownToClose
       index={0}
+      enableDynamicSizing={false}
       backgroundStyle={styles.bottomSheetBackground}
+      style={styles.modalContent}
       backdropComponent={(props) => (
         <View style={[props.style, {}]}>
           <TouchableOpacity style={{ flex: 1 }} onPress={onClose} />
         </View>
       )}
     >
-      <BottomSheetView style={styles.modalContent}>
-        <Text style={styles.modalTitle}>Audio</Text>
-        {audioTracks.map((track) => (
-          <View key={track.language} style={styles.menuItemContainer}>
+      <Text style={styles.modalTitle}>Audio</Text>
+      <BottomSheetFlatList
+        data={audioTracks}
+        keyExtractor={(item) => item.index.toString()}
+        style={{ marginBottom: 16 }}
+        renderItem={({ item }: { item: AudioTrack }) => (
+          <View key={item.index} style={styles.menuItemContainer}>
             <TouchableOpacity
               onPress={() => {
-                onAudioTrackChange(track);
+                onAudioTrackChange(item);
                 onClose();
               }}
             >
               <View
                 style={[
                   styles.menuItem,
-                  currentAudioTrack?.language === track.language &&
+                  currentAudioTrack?.index === item.index &&
                     styles.selectedItem,
                 ]}
               >
                 <Text
                   style={[
                     styles.menuItemText,
-                    currentAudioTrack?.language === track.language &&
+                    currentAudioTrack?.index === item.index &&
                       styles.selectedItemText,
                   ]}
                 >
-                  {track.label || track.language}
+                  {item.label || item.language}
                 </Text>
               </View>
             </TouchableOpacity>
           </View>
-        ))}
-      </BottomSheetView>
+        )}
+      />
     </BottomSheet>
   );
 }
