@@ -72,17 +72,7 @@ export function Controls({
           <TopControls title={title} onBack={onBack} />
         </Animated.View>
 
-        <Animated.View
-          style={{
-            position: 'absolute',
-            height: '100%',
-            width: '100%',
-            alignItems: 'center',
-            justifyContent: 'center',
-          }}
-          entering={FadeIn}
-          exiting={FadeOut}
-        >
+        <Animated.View entering={FadeIn} exiting={FadeOut}>
           <CenterControls
             currentTime={currentTime}
             duration={duration}
