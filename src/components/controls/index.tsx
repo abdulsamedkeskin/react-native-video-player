@@ -68,11 +68,28 @@ export function Controls({
   return (
     <>
       <View style={styles.controlsOverlay}>
-        <Animated.View entering={SlideInUp} exiting={SlideOutUp}>
+        <Animated.View
+          style={{
+            zIndex:
+              showQualityMenu || showAudioMenu || showSubtitleMenu ? 0 : 1,
+          }}
+          entering={SlideInUp}
+          exiting={SlideOutUp}
+        >
           <TopControls title={title} onBack={onBack} />
         </Animated.View>
 
-        <Animated.View entering={FadeIn} exiting={FadeOut}>
+        <Animated.View
+          style={{
+            position: 'absolute',
+            width: '100%',
+            height: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+          entering={FadeIn}
+          exiting={FadeOut}
+        >
           <CenterControls
             currentTime={currentTime}
             duration={duration}
