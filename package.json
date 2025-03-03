@@ -1,6 +1,6 @@
 {
   "name": "@sametkeskin/react-native-video-player",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "A customizable video player component for React Native with gesture controls, fullscreen support, and a modern UI.",
   "source": "./src/index.tsx",
   "main": "./lib/commonjs/index.js",
