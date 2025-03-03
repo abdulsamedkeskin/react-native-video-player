@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
   },
   slider: {
     flex: 1,
-    height: 40,
+    marginLeft: 10,
   },
   timeText: {
     color: 'white',

@@ -32,7 +32,6 @@ const styles = StyleSheet.create({
     width: '100%',
     paddingVertical: 16,
     paddingHorizontal: 8,
-    zIndex: 1,
     alignItems: 'center',
   },
   backButton: {
@@ -40,7 +39,6 @@ const styles = StyleSheet.create({
   },
   titleContainer: {
     position: 'absolute',
-    height: '100%',
     width: '100%',
     justifyContent: 'center',
     alignItems: 'center',
