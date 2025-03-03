@@ -1,6 +1,13 @@
 import { useState } from 'react';
-import { StyleSheet } from 'react-native';
-import Animated, { FadeIn, FadeOut } from 'react-native-reanimated';
+import { StyleSheet, View } from 'react-native';
+import Animated, {
+  FadeIn,
+  FadeOut,
+  SlideInDown,
+  SlideInUp,
+  SlideOutDown,
+  SlideOutUp,
+} from 'react-native-reanimated';
 import type { Quality, Subtitle, AudioTrack } from '../../types';
 import { QualityMenu, SubtitleMenu, AudioMenu } from '..';
 import { TopControls } from './TopControls';
@@ -60,41 +67,53 @@ export function Controls({
 
   return (
     <>
-      <Animated.View
-        entering={FadeIn}
-        exiting={FadeOut}
-        style={styles.controlsOverlay}
-      >
-        <TopControls title={title} onBack={onBack} />
+      <View style={styles.controlsOverlay}>
+        <Animated.View entering={SlideInUp} exiting={SlideOutUp}>
+          <TopControls title={title} onBack={onBack} />
+        </Animated.View>
 
-        <CenterControls
-          currentTime={currentTime}
-          duration={duration}
-          paused={paused}
-          bufferLoading={bufferLoading}
-          onSeek={onSeek}
-          onPlayPause={onPlayPause}
-        />
+        <Animated.View
+          style={{
+            position: 'absolute',
+            height: '100%',
+            width: '100%',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}
+          entering={FadeIn}
+          exiting={FadeOut}
+        >
+          <CenterControls
+            currentTime={currentTime}
+            duration={duration}
+            paused={paused}
+            bufferLoading={bufferLoading}
+            onSeek={onSeek}
+            onPlayPause={onPlayPause}
+          />
+        </Animated.View>
 
-        <BottomControls
-          currentTime={currentTime}
-          duration={duration}
-          qualities={qualities}
-          currentQuality={currentQuality}
-          subtitles={subtitles}
-          currentSubtitle={currentSubtitle}
-          audioTracks={audioTracks}
-          currentAudioTrack={currentAudioTrack}
-          onQualityChange={onQualityChange}
-          onSubtitleChange={onSubtitleChange}
-          onAudioTrackChange={onAudioTrackChange}
-          onSliderStart={onSliderStart}
-          onSliderComplete={onSliderComplete}
-          onShowQualityMenu={() => setShowQualityMenu(true)}
-          onShowSubtitleMenu={() => setShowSubtitleMenu(true)}
-          onShowAudioMenu={() => setShowAudioMenu(true)}
-        />
-      </Animated.View>
+        <Animated.View entering={SlideInDown} exiting={SlideOutDown}>
+          <BottomControls
+            currentTime={currentTime}
+            duration={duration}
+            qualities={qualities}
+            currentQuality={currentQuality}
+            subtitles={subtitles}
+            currentSubtitle={currentSubtitle}
+            audioTracks={audioTracks}
+            currentAudioTrack={currentAudioTrack}
+            onQualityChange={onQualityChange}
+            onSubtitleChange={onSubtitleChange}
+            onAudioTrackChange={onAudioTrackChange}
+            onSliderStart={onSliderStart}
+            onSliderComplete={onSliderComplete}
+            onShowQualityMenu={() => setShowQualityMenu(true)}
+            onShowSubtitleMenu={() => setShowSubtitleMenu(true)}
+            onShowAudioMenu={() => setShowAudioMenu(true)}
+          />
+        </Animated.View>
+      </View>
 
       {/* Menus */}
       <QualityMenu
@@ -127,8 +146,10 @@ export function Controls({
 const styles = StyleSheet.create({
   controlsOverlay: {
     position: 'absolute',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-between',
     height: '100%',
     width: '100%',
-    flex: 1,
   },
 });

@@ -26,16 +26,23 @@ export function CenterControls({
 }: CenterControlsProps) {
   const { width, height } = Dimensions.get('window');
 
+  const isLandscape = width > height;
   return (
-    <View style={[styles.container, { gap: width / 6 }]}>
+    <View
+      style={[styles.container, { gap: isLandscape ? height / 3 : width / 6 }]}
+    >
       <TouchableOpacity onPress={() => onSeek(Math.max(0, currentTime - 10))}>
-        <MaterialIcons name="replay-10" color="white" size={height / 8} />
+        <MaterialIcons
+          name="replay-10"
+          color="white"
+          size={isLandscape ? height / 8 : width / 8}
+        />
       </TouchableOpacity>
 
       <View style={[styles.playPauseContainer, { height: height / 5 }]}>
         {bufferLoading && (
           <ActivityIndicator
-            size={height / 5}
+            size={isLandscape ? height / 5 : width / 5}
             color="red"
             style={styles.bufferingIndicator}
           />
@@ -46,7 +53,7 @@ export function CenterControls({
         >
           <Ionicons
             name={paused ? 'play' : 'pause'}
-            size={height / 7}
+            size={isLandscape ? height / 7 : width / 7}
             color="white"
           />
         </TouchableOpacity>
@@ -55,7 +62,11 @@ export function CenterControls({
       <TouchableOpacity
         onPress={() => onSeek(Math.min(duration, currentTime + 10))}
       >
-        <MaterialIcons name="forward-10" color="white" size={height / 8} />
+        <MaterialIcons
+          name="forward-10"
+          color="white"
+          size={isLandscape ? height / 8 : width / 8}
+        />
       </TouchableOpacity>
     </View>
   );
@@ -63,7 +74,6 @@ export function CenterControls({
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',

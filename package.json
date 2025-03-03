@@ -66,7 +66,7 @@
   "dependencies": {
     "@expo/vector-icons": "^14.0.2",
     "@gorhom/bottom-sheet": "^5.1.1",
-    "@react-native-community/slider": "^4.5.5",
+    "@react-native-assets/slider": "^10.0.0",
     "expo-linear-gradient": "~14.0.2",
     "zustand": "^5.0.3"
   },

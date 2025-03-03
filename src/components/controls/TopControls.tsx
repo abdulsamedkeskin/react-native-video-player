@@ -11,7 +11,7 @@ export function TopControls({ title, onBack }: TopControlsProps) {
   return (
     <LinearGradient
       style={styles.container}
-      colors={['rgba(0, 0, 0, 0.6)', 'rgba(0, 0, 0, 0)']}
+      colors={['rgba(0, 0, 0, 0.4)', 'rgba(0, 0, 0, 0)']}
     >
       <TouchableOpacity style={styles.backButton} onPress={onBack}>
         <Ionicons name="arrow-back" size={28} color="white" />
@@ -28,7 +28,6 @@ export function TopControls({ title, onBack }: TopControlsProps) {
 
 const styles = StyleSheet.create({
   container: {
-    position: 'absolute',
     flexDirection: 'row',
     width: '100%',
     paddingVertical: 16,

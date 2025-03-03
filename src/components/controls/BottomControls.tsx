@@ -1,7 +1,7 @@
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { LinearGradient } from 'expo-linear-gradient';
 import { MaterialIcons, FontAwesome5, Ionicons } from '@expo/vector-icons';
-import Slider from '@react-native-community/slider';
+import Slider from '@react-native-assets/slider';
 import { formatTime } from '../../utils';
 import type { Quality, Subtitle, AudioTrack } from '../../types';
 
@@ -41,11 +41,13 @@ export function BottomControls({
       <View style={styles.progressContainer}>
         <Slider
           style={styles.slider}
+          trackHeight={2}
+          thumbSize={24}
           minimumValue={0}
           maximumValue={duration}
           value={currentTime}
           minimumTrackTintColor="#ff0000"
-          maximumTrackTintColor="rgba(255, 255, 255, 1)"
+          maximumTrackTintColor="rgba(255, 255, 255, .2)"
           thumbTintColor="#ff0000"
           step={1}
           onSlidingStart={onSliderStart}
@@ -86,12 +88,7 @@ export function BottomControls({
 }
 
 const styles = StyleSheet.create({
-  container: {
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-    right: 0,
-  },
+  container: {},
   progressContainer: {
     flexDirection: 'row',
     alignItems: 'center',
@@ -102,13 +99,12 @@ const styles = StyleSheet.create({
   slider: {
     flex: 1,
     height: 40,
-    marginRight: 10,
   },
   timeText: {
     color: 'white',
     fontSize: 12,
     minWidth: 100,
-    textAlign: 'right',
+    textAlign: 'center',
   },
   buttonContainer: {
     flexDirection: 'row',
@@ -124,7 +120,6 @@ const styles = StyleSheet.create({
     gap: 4,
     padding: 8,
     marginHorizontal: 5,
-    backgroundColor: 'rgba(255, 255, 255, 0.05)',
     borderRadius: 8,
   },
   controlButtonText: {

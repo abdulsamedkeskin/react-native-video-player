@@ -10,7 +10,11 @@ import {
   GestureDetector,
   GestureHandlerRootView,
 } from 'react-native-gesture-handler';
-import Animated from 'react-native-reanimated';
+import Animated, {
+  useSharedValue,
+  withDelay,
+  withTiming,
+} from 'react-native-reanimated';
 import type { VideoPlayerProps } from './types';
 import { useVideoPlayer } from './hooks/useVideoPlayer';
 import { Controls } from './components/controls';
@@ -38,6 +42,8 @@ export default function VideoPlayer({
     initialAudioLanguage,
   });
 
+  const videoOpacity = useSharedValue(1);
+
   useEffect(() => {
     if (onTimeUpdate) onTimeUpdate(state.currentTime);
   }, [state.currentTime, onTimeUpdate]);
@@ -49,6 +55,11 @@ export default function VideoPlayer({
   const singleTap = Gesture.Tap()
     .onEnd((_event, success) => {
       if (success) {
+        if (!state.showControls) {
+          videoOpacity.value = withDelay(100, withTiming(0.7));
+        } else {
+          videoOpacity.value = withDelay(100, withTiming(1));
+        }
         actions.toggleControls();
       }
     })
@@ -100,7 +111,7 @@ export default function VideoPlayer({
             style={[
               {
                 flex: 1,
-                opacity: state.showControls ? 0.9 : 1,
+                opacity: videoOpacity,
                 width: width,
                 height: height,
               },

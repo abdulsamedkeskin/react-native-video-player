@@ -2957,6 +2957,24 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@react-native-assets/slider@npm:^10.0.0":
+  version: 10.0.0
+  resolution: "@react-native-assets/slider@npm:10.0.0"
+  dependencies:
+    react-dom: ">=16.13.1"
+    react-native-web: ">=0.13.4"
+  peerDependencies:
+    react: ">=16.13.1"
+    react-native: ">=0.61.4"
+  dependenciesMeta:
+    react-dom:
+      optional: true
+    react-native-web:
+      optional: true
+  checksum: a9eeec87f5dd15ad34d517f606bf2ffc2678bb94f3e430c3f54d348e51a62c7a4c4c9cdda7457496addaada5b19c53f6b1d625cc6151d6ecc2d7eb79fc95aa1f
+  languageName: node
+  linkType: hard
+
 "@react-native-community/slider@npm:^4.5.5":
   version: 4.5.6
   resolution: "@react-native-community/slider@npm:4.5.6"
@@ -3217,6 +3235,7 @@ __metadata:
     "@evilmartians/lefthook": ^1.5.0
     "@expo/vector-icons": ^14.0.2
     "@gorhom/bottom-sheet": ^5.1.1
+    "@react-native-assets/slider": ^10.0.0
     "@react-native-community/slider": ^4.5.5
     "@react-native/eslint-config": ^0.73.1
     "@release-it/conventional-changelog": ^9.0.2
@@ -11877,6 +11896,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"react-dom@npm:>=16.13.1":
+  version: 19.0.0
+  resolution: "react-dom@npm:19.0.0"
+  dependencies:
+    scheduler: ^0.25.0
+  peerDependencies:
+    react: ^19.0.0
+  checksum: 009cc6e575263a0d1906f9dd4aa6532d2d3d0d71e4c2b7777c8fe4de585fa06b5b77cdc2e0fbaa2f3a4a5e5d3305c189ba152153f358ee7da4d9d9ba5d3a8975
+  languageName: node
+  linkType: hard
+
 "react-is@npm:^16.13.1, react-is@npm:^16.7.0":
   version: 16.13.1
   resolution: "react-is@npm:16.13.1"
@@ -11996,7 +12026,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-native-web@npm:~0.19.13":
+"react-native-web@npm:>=0.13.4, react-native-web@npm:~0.19.13":
   version: 0.19.13
   resolution: "react-native-web@npm:0.19.13"
   dependencies:
@@ -12737,6 +12767,13 @@ __metadata:
   dependencies:
     loose-envify: ^1.1.0
   checksum: 3e82d1f419e240ef6219d794ff29c7ee415fbdc19e038f680a10c067108e06284f1847450a210b29bbaf97b9d8a97ced5f624c31c681248ac84c80d56ad5a2c4
+  languageName: node
+  linkType: hard
+
+"scheduler@npm:^0.25.0":
+  version: 0.25.0
+  resolution: "scheduler@npm:0.25.0"
+  checksum: b7bb9fddbf743e521e9aaa5198a03ae823f5e104ebee0cb9ec625392bb7da0baa1c28ab29cee4b1e407a94e76acc6eee91eeb749614f91f853efda2613531566
   languageName: node
   linkType: hard
 
